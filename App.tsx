@@ -1,108 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import TreadmillSection from './components/TreadmillSection';
-import IntroCard from './components/IntroCard';
-import FAQSection from './components/FAQSection';
-import Footer from './components/Footer';
-import PistonRingPage from './components/PistonRingPage';
-import DisplayPage from './components/DisplayPage';
-import SocialNotifications from './components/SocialNotifications';
+import React from 'react';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'piston-ring' | 'display'>('home');
-  const [hasError, setHasError] = useState(false);
-
-  // 调试日志：如果 React 运行了，控制台会打印这个
-  useEffect(() => {
-    console.log("React App 启动成功，当前视图:", currentView);
-  }, [currentView]);
-
-  const displayProducts = [
-    {
-      id: 1,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/QZNIVeljTZXvecLS.jpg",
-      title: "DLC / PVD / PVD Piston Ring Set",
-      highlightTitle: "DLC / PVD / PVD",
-      description: "High-end coating configuration for motorcycle engines, ideal for racing and high-performance applications."
-    },
-    {
-      id: 2,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/TxkWJxgBrzQrLQip.jpg",
-      title: "N / P / Pcr Piston Ring Set",
-      highlightTitle: "N / P / Pcr",
-      description: "The most popular standard solution for motorcycle engines, offering excellent balance and reliable durability."
-    },
-    {
-      id: 3,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/avlMucduOqcVyyuE.jpg",
-      title: "P + Cr / P / Cr Piston Ring Set",
-      highlightTitle: "P + Cr / P / Cr",
-      description: "Phosphating and hard chrome plated configuration for automotive engines, offering reliable wear resistance."
-    }
-  ];
-
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* 🟢 调试锚点：如果看到这个红条，说明代码逻辑没死，问题出在具体组件里 */}
-      <div style={{ background: 'red', color: 'white', textAlign: 'center', padding: '5px', fontSize: '12px', zIndex: 9999 }}>
-        Debug: React Renderer Active | View: {currentView}
+    <div style={{ 
+      height: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      background: '#f0f0f0',
+      color: '#333'
+    }}>
+      <h1 style={{ fontSize: '3rem', margin: '0' }}>React 正常运行中！🚀</h1>
+      <p style={{ fontSize: '1.5rem' }}>如果你看到了这个页面，说明部署路径和环境都是正确的。</p>
+      <div style={{ marginTop: '20px', padding: '10px', border: '2px solid red' }}>
+        这是测试文字，用来确认不是样式塌陷导致的问题。
       </div>
-
-      <Navbar onNavigate={setCurrentView} currentView={currentView} />
-
-      <main className="flex-grow">
-        {currentView === 'home' && (
-          <>
-            <Hero />
-            <IntroCard />
-
-            {/* Gallery Section */}
-            <section id="display" className="py-20 bg-gray-50">
-              <div className="max-w-7xl mx-auto px-4">
-                <div className="text-center mb-12">
-                   <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">Product <span className="text-highlight">Display</span></h2>
-                   <div className="h-1 w-12 bg-highlight mx-auto mt-4 mb-2"></div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {displayProducts.map((product) => (
-                    <div key={product.id} className="relative group overflow-hidden bg-white shadow-md rounded-lg h-96 border border-gray-100">
-                      <img 
-                        src={product.image} 
-                        alt={product.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        onError={(e) => console.error("图片加载失败:", product.image)}
-                      />
-                      <div className="absolute inset-0 bg-navy/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-8 text-center">
-                        <h3 className="text-white oswald text-xl uppercase tracking-widest mb-4">
-                          <span className="font-extrabold text-black bg-white px-2 py-0.5 mr-1">{product.highlightTitle}</span>
-                          {product.title.replace(product.highlightTitle, '')}
-                        </h3>
-                        <p className="text-gray-300 text-sm leading-relaxed mb-6">
-                          {product.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <FAQSection />
-            <TreadmillSection />
-          </>
-        )}
-        
-        {currentView === 'piston-ring' && <PistonRingPage />}
-        {currentView === 'display' && <DisplayPage />}
-      </main>
-
-      <Footer />
-      <SocialNotifications />
     </div>
   );
 };
 
 export default App;
-
