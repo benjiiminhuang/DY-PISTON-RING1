@@ -1,17 +1,16 @@
-return (
-    <div style={{ minHeight: '100vh', background: 'blue', color: 'white', display: 'block' }}>
-      <h1 style={{ fontSize: '50px', padding: '20px' }}>
-        正在强制显示：测试文字 123
-      </h1>
-      
-      <div style={{ border: '5px solid yellow', margin: '20px', padding: '20px' }}>
-        <p>如果你能看到蓝底白字和黄框，说明 React 渲染没问题，是 Tailwind 样式加载失败了。</p>
-      </div>
+import React from 'react';
 
-      <Navbar onNavigate={setCurrentView} currentView={currentView} />
-      {/* 暂时把其他的先放下面 */}
-      <main className="flex-grow">
-        {/* ... 原本的代码 ... */}
-      </main>
+const App: React.FC = () => {
+  return (
+    <div style={{ minHeight: '100vh', background: 'blue', color: 'white', display: 'block', padding: '20px' }}>
+      <h1 style={{ fontSize: '50px' }}>
+        React 引擎启动成功！🚀
+      </h1>
+      <div style={{ border: '5px solid yellow', marginTop: '20px', padding: '20px' }}>
+        <p style={{ fontSize: '24px' }}>如果你能看到这个蓝底黄框，说明打包和路径都修好了。</p>
+      </div>
     </div>
   );
+};
+
+export default App;
