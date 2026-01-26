@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TreadmillSection from './components/TreadmillSection';
@@ -12,11 +11,16 @@ import SocialNotifications from './components/SocialNotifications';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'piston-ring' | 'display'>('home');
+  const [hasError, setHasError] = useState(false);
+
+  // 调试日志：如果 React 运行了，控制台会打印这个
+  useEffect(() => {
+    console.log("React App 启动成功，当前视图:", currentView);
+  }, [currentView]);
 
   const displayProducts = [
     {
       id: 1,
-      /* USER LINK: Homepage Display 1 */
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/QZNIVeljTZXvecLS.jpg",
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
@@ -24,7 +28,6 @@ const App: React.FC = () => {
     },
     {
       id: 2,
-      /* USER LINK: Homepage Display 2 */
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/TxkWJxgBrzQrLQip.jpg",
       title: "N / P / Pcr Piston Ring Set",
       highlightTitle: "N / P / Pcr",
@@ -32,7 +35,6 @@ const App: React.FC = () => {
     },
     {
       id: 3,
-      /* USER LINK: Homepage Display 3 */
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/avlMucduOqcVyyuE.jpg",
       title: "P + Cr / P / Cr Piston Ring Set",
       highlightTitle: "P + Cr / P / Cr",
@@ -42,6 +44,11 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
+      {/* 🟢 调试锚点：如果看到这个红条，说明代码逻辑没死，问题出在具体组件里 */}
+      <div style={{ background: 'red', color: 'white', textAlign: 'center', padding: '5px', fontSize: '12px', zIndex: 9999 }}>
+        Debug: React Renderer Active | View: {currentView}
+      </div>
+
       <Navbar onNavigate={setCurrentView} currentView={currentView} />
 
       <main className="flex-grow">
@@ -65,6 +72,7 @@ const App: React.FC = () => {
                         src={product.image} 
                         alt={product.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        onError={(e) => console.error("图片加载失败:", product.image)}
                       />
                       <div className="absolute inset-0 bg-navy/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-8 text-center">
                         <h3 className="text-white oswald text-xl uppercase tracking-widest mb-4">
@@ -97,3 +105,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
