@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      base: '/DY-PISTON-RING1/', // ✨ 新增了这一行，用于 GitHub 部署
       server: {
         port: 3000,
         host: '0.0.0.0',
