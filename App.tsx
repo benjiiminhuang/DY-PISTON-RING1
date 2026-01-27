@@ -19,14 +19,17 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const displayProducts = [
+ const displayProducts = [
     {
       id: 1,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/QZNIVeljTZXvecLS.jpg",
+      // 这里的名字必须和你截图里的完全一样
+      image: "./DLC-PVD-PVD.jpg.jpg", 
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
       description: "High-end coating configuration for motorcycle engines, ideal for racing and high-performance applications."
     },
+    // ... 其他暂时不动
+  ];
     {
       id: 2,
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/TxkWJxgBrzQrLQip.jpg",
