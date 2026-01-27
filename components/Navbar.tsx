@@ -87,8 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
   src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
   alt="Home" 
   className="h-16 w-16 object-contain"
-/>
-            />
+/>      
           </a>
 
           {/* Left: Search Bar (Desktop) */}
