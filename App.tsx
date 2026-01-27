@@ -22,7 +22,7 @@ const displayProducts = [
     {
       id: 1,
       // 使用 Raw 链接，确保在 GitHub Pages 环境下稳定加载
-      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DLC-PVD-PVD.jpg", 
+      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DLC-PVD-PVD.jpg.jpg", 
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
       description: "High-end coating configuration for motorcycle engines, ideal for racing and high-performance applications."
