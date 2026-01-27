@@ -11,10 +11,10 @@ const PistonRingPage: React.FC = () => {
           <div className="h-1 w-12 bg-highlight mx-auto mt-4"></div>
         </div>
         
-        {/* 核心展示：DY category.png */}
+        {/* 修正：添加 ./ 前缀 */}
         <div className="bg-gray-50 rounded-3xl p-4 md:p-10 shadow-inner border border-gray-100 overflow-hidden flex justify-center">
           <img 
-            src="./DY category.png" 
+            src="./DY%20category.png" 
             alt="DY Piston Ring Categories" 
             className="max-w-full h-auto object-contain rounded-xl shadow-2xl"
           />
