@@ -82,10 +82,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             className="flex-shrink-0 mr-4 group transition-transform hover:scale-110 active:scale-95 hidden md:block"
             title="Return to Home"
           >
-            <img 
-              src="/DY-PISTON-RING1/DY animation.png"
-              alt="Home" 
-              className="h-16 w-16 object-contain"
+           {/* 左侧动漫图标 */}
+<img 
+  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
+  alt="Home" 
+  className="h-16 w-16 object-contain"
+/>
             />
           </a>
 
@@ -139,11 +141,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
             >
               <div className="flex items-center justify-center mr-3">
-                <img 
-                  src="/DY-PISTON-RING1/DYlogo.png"
-                  alt="DY Logo" 
-                  className="h-12 w-12 object-contain"
-                />
+               {/* 左侧动漫图标 */}
+<img 
+  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
+  alt="Home" 
+  className="h-16 w-16 object-contain"
+/>
               </div>
               <span className={`text-2xl font-bold tracking-tighter oswald ${gradientTextClass}`}>
                 DY PISTON RING
