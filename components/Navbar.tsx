@@ -56,7 +56,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     setShowResults(false);
     setSearchTerm('');
     
-    // Slight delay to allow view transition before scrolling
     setTimeout(() => {
       if (anchor) {
         const element = document.getElementById(anchor);
@@ -76,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Far Left: Home Return Icon */}
+          {/* Far Left: Home Return Icon - 使用本地动画图 */}
           <a 
             href="#" 
             onClick={(e) => handleNav('home', e)}
@@ -84,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             title="Return to Home"
           >
             <img 
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/fFwbpHywMdsHFesP.png" 
+              src="./DY animation.png" 
               alt="Home" 
               className="h-16 w-16 object-contain drop-shadow-[0_0_8px_rgba(71,125,199,0.3)]"
             />
@@ -109,7 +108,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               />
             </div>
 
-            {/* Search Results Dropdown */}
             {showResults && filteredResults.length > 0 && (
               <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-100 overflow-hidden animate-fade-in py-2">
                 <div className="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 mb-1">
@@ -131,15 +129,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                 ))}
               </div>
             )}
-            
-            {showResults && searchTerm.trim() !== '' && filteredResults.length === 0 && (
-              <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-100 p-4 text-center">
-                <p className="text-gray-400 text-xs italic">No matching results found.</p>
-              </div>
-            )}
           </div>
 
-          {/* Right: Logo & Menu */}
+          {/* Right: Logo & Menu - 使用本地Logo图 */}
           <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
             <a 
               href="#"
@@ -148,7 +140,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             >
               <div className="flex items-center justify-center mr-3">
                 <img 
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/boBcfNzRwmZQVGLP.png" 
+                  src="./DYlogo.png" 
                   alt="DY Logo" 
                   className="h-12 w-12 object-contain filter drop-shadow-md"
                 />
@@ -158,30 +150,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               </span>
             </a>
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8 uppercase tracking-widest text-sm font-bold">
-              <a 
-                href="#" 
-                onClick={(e) => handleNav('home', e)}
-                className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'home' ? 'border-b border-highlight' : ''}`}
-              >
-                Home
-              </a>
-              <button 
-                onClick={(e) => handleNav('piston-ring', e)}
-                className={`${gradientTextClass} hover:opacity-70 transition-opacity uppercase tracking-widest text-sm font-bold ${currentView === 'piston-ring' ? 'border-b border-highlight' : ''}`}
-              >
-                Piston Ring
-              </button>
-              <button 
-                onClick={(e) => handleNav('display', e)}
-                className={`${gradientTextClass} hover:opacity-70 transition-opacity uppercase tracking-widest text-sm font-bold ${currentView === 'display' ? 'border-b border-highlight' : ''}`}
-              >
-                Display
-              </button>
+              <button onClick={(e) => handleNav('home', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'home' ? 'border-b border-highlight' : ''}`}>Home</button>
+              <button onClick={(e) => handleNav('piston-ring', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'piston-ring' ? 'border-b border-highlight' : ''}`}>Piston Ring</button>
+              <button onClick={(e) => handleNav('display', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'display' ? 'border-b border-highlight' : ''}`}>Display</button>
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -194,11 +168,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-navy border-t border-white/10">
           <div className="px-4 py-4 space-y-4">
-            {/* Mobile Search */}
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Search className="h-4 w-4 text-gray-400" />
@@ -210,22 +182,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                 className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-0 focus:text-gray-900 sm:text-sm"
                 placeholder="Search..."
               />
-              {searchTerm.trim() !== '' && filteredResults.length > 0 && (
-                <div className="mt-2 bg-white rounded shadow-lg overflow-hidden">
-                  {filteredResults.slice(0, 3).map(item => (
-                    <button
-                      key={item.id}
-                      onClick={() => handleNav(item.view, undefined, item.anchor)}
-                      className="w-full text-left px-3 py-2 text-navy text-xs font-bold oswald uppercase border-b border-gray-100"
-                    >
-                      {item.title}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
             <div className="space-y-1">
-              <a href="#" onClick={(e) => handleNav('home', e)} className={`block px-3 py-3 text-base font-bold ${gradientTextClass}`}>Home</a>
+              <button onClick={(e) => handleNav('home', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Home</button>
               <button onClick={(e) => handleNav('piston-ring', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Piston Ring</button>
               <button onClick={(e) => handleNav('display', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Display</button>
             </div>
