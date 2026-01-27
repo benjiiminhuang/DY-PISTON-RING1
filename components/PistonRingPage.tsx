@@ -15,7 +15,7 @@ const PistonRingPage: React.FC = () => {
 
       <div className="max-w-7xl w-full flex justify-center items-center shadow-sm rounded-xl overflow-hidden border border-gray-50 p-2">
         <img 
-          src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/BOduwFcOSHUGKmbv.png" 
+          src="./DY category.png" 
           alt="Piston Ring Technical Detail" 
           className="w-full h-auto max-h-[75vh] object-contain animate-fade-in"
           // 增加加载失败的备选方案
