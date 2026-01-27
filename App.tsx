@@ -19,33 +19,29 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
- const displayProducts = [
+const displayProducts = [
     {
       id: 1,
-      // 这里的名字必须和你截图里的完全一样
-      image: "./DLC-PVD-PVD.jpg.jpg", 
+      image: "./DLC-PVD-PVD.jpg", 
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
       description: "High-end coating configuration for motorcycle engines, ideal for racing and high-performance applications."
     },
-    // ... 其他暂时不动
-  ];
     {
       id: 2,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/TxkWJxgBrzQrLQip.jpg",
+      image: "./N-P-PCr.jpg", 
       title: "N / P / Pcr Piston Ring Set",
       highlightTitle: "N / P / Pcr",
       description: "The most popular standard solution for motorcycle engines, offering excellent balance and reliable durability."
     },
     {
       id: 3,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663280755586/avlMucduOqcVyyuE.jpg",
+      image: "./P+Cr-P-Cr.jpg.jpg", 
       title: "P + Cr / P / Cr Piston Ring Set",
       highlightTitle: "P + Cr / P / Cr",
       description: "Phosphating and hard chrome plated configuration for automotive engines, offering reliable wear resistance."
     }
   ];
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* 导航栏置顶 */}
