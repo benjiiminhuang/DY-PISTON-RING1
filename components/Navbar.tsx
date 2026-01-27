@@ -83,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             title="Return to Home"
           >
             <img 
-              src="./DY animation.png" 
+              src="/DY animation.png" 
               alt="Home" 
               className="h-16 w-16 object-contain drop-shadow-[0_0_8px_rgba(71,125,199,0.3)]"
             />
@@ -140,7 +140,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             >
               <div className="flex items-center justify-center mr-3">
                 <img 
-                  src="./DYlogo.png" 
+                  src="/DYlogo.png" 
                   alt="DY Logo" 
                   className="h-12 w-12 object-contain filter drop-shadow-md"
                 />
