@@ -15,9 +15,10 @@ const PistonRingPage: React.FC = () => {
 
       <div className="max-w-7xl w-full flex justify-center items-center shadow-sm rounded-xl overflow-hidden border border-gray-50 p-2">
         <img 
-          src="./DY category.png" 
-          alt="Piston Ring Technical Detail" 
-          className="w-full h-auto max-h-[75vh] object-contain animate-fade-in"
+  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20category.png" 
+  alt="Piston Ring Technical Detail" 
+  className="w-full h-auto max-h-[85vh] object-contain animate-fade-in"
+/>
           // 增加加载失败的备选方案
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://via.placeholder.com/800x600?text=Image+Loading+Failed";
