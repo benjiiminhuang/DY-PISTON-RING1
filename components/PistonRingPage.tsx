@@ -1,11 +1,9 @@
 import React from 'react';
-
 const PistonRingPage: React.FC = () => {
   return (
-    // 改用 min-h-screen 并增加顶部内边距 pt-20，确保不被 Navbar 挡住
     <div className="min-h-screen bg-white flex flex-col items-center pt-24 pb-12 px-4">
       
-      {/* 增加一个简单的标题，有助于确认页面已经跳转成功 */}
+      {/* 页面标题 */}
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-navy oswald uppercase tracking-tighter">
           Technical <span className="text-highlight">Classification</span>
@@ -15,11 +13,10 @@ const PistonRingPage: React.FC = () => {
 
       <div className="max-w-7xl w-full flex justify-center items-center shadow-sm rounded-xl overflow-hidden border border-gray-50 p-2">
         <img 
-  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20category.png" 
-  alt="Piston Ring Technical Detail" 
-  className="w-full h-auto max-h-[85vh] object-contain animate-fade-in"
-/>
-          // 增加加载失败的备选方案
+          src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20category.png" 
+          alt="Piston Ring Technical Detail" 
+          className="w-full h-auto max-h-[85vh] object-contain animate-fade-in"
+          // onError 必须写在 > 括号里面
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://via.placeholder.com/800x600?text=Image+Loading+Failed";
           }}
