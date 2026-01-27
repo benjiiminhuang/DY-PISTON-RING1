@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import TreadmillSection from './components/TreadmillSection.tsx';
-import IntroCard from './components/IntroCard.tsx';
-import FAQSection from './components/FAQSection.tsx';
-import Footer from './components/Footer.tsx';
-import PistonRingPage from './components/PistonRingPage.tsx';
-import DisplayPage from './components/DisplayPage.tsx';
-import SocialNotifications from './components/SocialNotifications.tsx';
+// 去掉了 .tsx 后缀，确保 Vite 兼容性
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import TreadmillSection from './components/TreadmillSection';
+import IntroCard from './components/IntroCard';
+import FAQSection from './components/FAQSection';
+import Footer from './components/Footer';
+import PistonRingPage from './components/PistonRingPage';
+import DisplayPage from './components/DisplayPage';
+import SocialNotifications from './components/SocialNotifications';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'piston-ring' | 'display'>('home');
@@ -15,6 +16,7 @@ const App: React.FC = () => {
   const displayProducts = [
     {
       id: 1,
+      // 注意：请确保这里的文件名和你在 GitHub 上传的一模一样
       image: "./DLC-PVD-PVD.jpg", 
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
@@ -29,9 +31,9 @@ const App: React.FC = () => {
     },
     {
       id: 3,
-      image: "./P+Cr-P-Cr.jpg.jpg", // 严格遵循用户提供的 P+Cr-P-Cr.jpg.jpg
-      title: "Steel Chrome Piston Ring Set",
-      highlightTitle: "ST + Cr",
+      image: "./P+Cr-P-Cr.jpg", 
+      title: "P + Cr / P / Cr Piston Ring Set",
+      highlightTitle: "P + Cr / P / Cr",
       description: "Phosphating and hard chrome plated configuration for automotive engines, offering reliable wear resistance."
     }
   ];
@@ -64,6 +66,9 @@ const App: React.FC = () => {
                         src={product.image} 
                         alt={product.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                        onError={(e) => {
+                          console.error("图片加载失败:", product.image);
+                        }}
                       />
                       <div className="absolute inset-0 bg-navy/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-8 text-center">
                         <h3 className="text-white oswald text-xl uppercase tracking-widest mb-4">
