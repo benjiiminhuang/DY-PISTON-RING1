@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import TreadmillSection from './components/TreadmillSection.tsx';
-import IntroCard from './components/IntroCard.tsx';
-import FAQSection from './components/FAQSection.tsx';
-import Footer from './components/Footer.tsx';
-import PistonRingPage from './components/PistonRingPage.tsx';
-import DisplayPage from './components/DisplayPage.tsx';
-import SocialNotifications from './components/SocialNotifications.tsx';
+// 移除了 .tsx 后缀，确保 Vite 编译更稳定
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import TreadmillSection from './components/TreadmillSection';
+import IntroCard from './components/IntroCard';
+import FAQSection from './components/FAQSection';
+import Footer from './components/Footer';
+import PistonRingPage from './components/PistonRingPage';
+import DisplayPage from './components/DisplayPage';
+import SocialNotifications from './components/SocialNotifications';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'piston-ring' | 'display'>('home');
+
+  // 处理跳转逻辑并自动回到顶部
+  const handleNavigate = (view: 'home' | 'piston-ring' | 'display') => {
+    setCurrentView(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const displayProducts = [
     {
@@ -38,9 +45,11 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar onNavigate={setCurrentView} currentView={currentView} />
+      {/* 导航栏置顶 */}
+      <Navbar onNavigate={handleNavigate} currentView={currentView} />
 
-      <main className="flex-grow">
+      {/* 主内容区域：增加了 pt-20 确保不被固定导航栏遮挡 */}
+      <main className="flex-grow pt-20">
         {currentView === 'home' && (
           <div className="animate-fade-in">
             <Hero />
@@ -71,6 +80,8 @@ const App: React.FC = () => {
             <TreadmillSection />
           </div>
         )}
+
+        {/* 切换页面逻辑 */}
         {currentView === 'piston-ring' && <PistonRingPage />}
         {currentView === 'display' && <DisplayPage />}
       </main>
