@@ -3,14 +3,14 @@ import React from 'react';
 const Hero: React.FC = () => {
   return (
     <div className="relative h-[60vh] w-full overflow-hidden flex items-center justify-center">
-      {/* 修正：使用 ./ 前缀确保路径正确 */}
+      {/* Primary Banner Image */}
       <img
         src="./banner.png"
         alt="DY Piston Ring Banner"
         className="absolute inset-0 w-full h-full object-cover"
       />
       
-      {/* 黑色半透明遮罩，确保文字清晰 */}
+      {/* Subtle overlay for text readability */}
       <div className="absolute inset-0 bg-black/30"></div>
       
       <div className="relative z-10 container mx-auto px-4 text-center">
