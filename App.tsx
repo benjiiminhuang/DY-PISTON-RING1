@@ -49,7 +49,7 @@ const displayProducts = [
       <Navbar onNavigate={handleNavigate} currentView={currentView} />
 
       {/* 主内容区域：增加了 pt-20 确保不被固定导航栏遮挡 */}
-      <main className="flex-grow pt-20">
+     <main className="flex-grow">
         {currentView === 'home' && (
           <div className="animate-fade-in">
             <Hero />
