@@ -75,22 +75,21 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Far Left: Home Return Icon - 使用本地动画图 */}
+          {/* Left: Home Return Icon */}
           <a 
             href="#" 
             onClick={(e) => handleNav('home', e)}
             className="flex-shrink-0 mr-4 group transition-transform hover:scale-110 active:scale-95 hidden md:block"
             title="Return to Home"
           >
-           {/* 左侧动漫图标 */}
-<img 
-  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
-  alt="Home" 
-  className="h-16 w-16 object-contain"
-/>      
+            <img 
+              src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
+              alt="Home" 
+              className="h-16 w-16 object-contain"
+            />      
           </a>
 
-          {/* Left: Search Bar (Desktop) */}
+          {/* Search Bar Container */}
           <div className="hidden md:flex flex-1 items-center relative" ref={searchRef}>
             <div className="relative w-64">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -109,8 +108,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               />
             </div>
 
+            {/* Search Results Dropdown */}
             {showResults && filteredResults.length > 0 && (
-              <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-100 overflow-hidden animate-fade-in py-2">
+              <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-100 overflow-hidden py-2">
                 <div className="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 mb-1">
                   Found {filteredResults.length} Results
                 </div>
@@ -118,52 +118,42 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                   <button
                     key={item.id}
                     onClick={() => handleNav(item.view, undefined, item.anchor)}
-                   <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
-  {/* 原来的 Logo 部分改为跳转主页 */}
-  <a 
-    href="#"
-    onClick={(e) => handleNav('home', e)}
-    className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
-  >
-    <div className="flex items-center justify-center mr-3">
-      <img 
-        src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
-        alt="DY Logo" 
-        className="h-12 w-12 object-contain"
-      />
-    </div>
-    {/* 改成公司网站链接 */}
-    
-      href="https://www.dypistonring.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`text-2xl font-bold tracking-tighter oswald ${gradientTextClass} hover:opacity-80 transition-opacity`}
-      onClick={(e) => e.stopPropagation()}
-    >
-      DY PISTON RING
-    </a>
-  </a>
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 transition-colors"
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Right: Logo and Nav Links */}
+          <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
+            <a 
+              href="#"
               onClick={(e) => handleNav('home', e)}
               className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
             >
               <div className="flex items-center justify-center mr-3">
-              <img 
-  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
-  alt="DY Logo" 
-  className="h-12 w-12 object-contain"
-/>
+                <img 
+                  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
+                  alt="DY Logo" 
+                  className="h-12 w-12 object-contain"
+                />
               </div>
               <span className={`text-2xl font-bold tracking-tighter oswald ${gradientTextClass}`}>
                 DY PISTON RING
               </span>
             </a>
 
+            {/* Desktop Nav */}
             <div className="hidden md:flex space-x-8 uppercase tracking-widest text-sm font-bold">
               <button onClick={(e) => handleNav('home', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'home' ? 'border-b border-highlight' : ''}`}>Home</button>
               <button onClick={(e) => handleNav('piston-ring', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'piston-ring' ? 'border-b border-highlight' : ''}`}>Piston Ring</button>
               <button onClick={(e) => handleNav('display', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'display' ? 'border-b border-highlight' : ''}`}>Display</button>
             </div>
 
+            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -176,6 +166,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
         </div>
       </div>
 
+      {/* Mobile Menu Content */}
       {isMenuOpen && (
         <div className="md:hidden bg-navy border-t border-white/10">
           <div className="px-4 py-4 space-y-4">
