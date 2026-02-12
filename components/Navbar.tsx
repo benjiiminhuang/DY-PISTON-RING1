@@ -118,24 +118,31 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
                   <button
                     key={item.id}
                     onClick={() => handleNav(item.view, undefined, item.anchor)}
-                    className="w-full text-left px-4 py-3 hover:bg-gray-50 flex flex-col transition-colors group"
-                  >
-                    <span className="text-navy font-bold text-sm oswald uppercase group-hover:text-highlight transition-colors">
-                      {item.title}
-                    </span>
-                    <span className="text-gray-400 text-[10px] uppercase tracking-tighter">
-                      In {item.view.replace('-', ' ')} • {item.type}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Right: Logo & Menu - 使用本地Logo图 */}
-          <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
-            <a 
-              href="#"
+                   <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
+  {/* 原来的 Logo 部分改为跳转主页 */}
+  <a 
+    href="#"
+    onClick={(e) => handleNav('home', e)}
+    className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
+  >
+    <div className="flex items-center justify-center mr-3">
+      <img 
+        src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
+        alt="DY Logo" 
+        className="h-12 w-12 object-contain"
+      />
+    </div>
+    {/* 改成公司网站链接 */}
+    
+      href="https://www.dypistonring.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`text-2xl font-bold tracking-tighter oswald ${gradientTextClass} hover:opacity-80 transition-opacity`}
+      onClick={(e) => e.stopPropagation()}
+    >
+      DY PISTON RING
+    </a>
+  </a>
               onClick={(e) => handleNav('home', e)}
               className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
             >
