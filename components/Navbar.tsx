@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Left: Home Return Icon (Internal Navigation) */}
+          {/* 左侧：动漫图标（点击回应用主页） */}
           <a 
             href="#" 
             onClick={(e) => handleNav('home', e)}
@@ -89,7 +89,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             />      
           </a>
 
-          {/* Search Bar Container */}
+          {/* 中间：搜索框 */}
           <div className="hidden md:flex flex-1 items-center relative" ref={searchRef}>
             <div className="relative w-64">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -108,7 +108,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               />
             </div>
 
-            {/* Search Results Dropdown */}
             {showResults && filteredResults.length > 0 && (
               <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-100 overflow-hidden py-2">
                 <div className="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50 mb-1">
@@ -127,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             )}
           </div>
 
-          {/* Right: Logo Area (External Link to Website) */}
+          {/* 右侧：Logo + 标题（点击跳转官网）+ 导航按钮 */}
           <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
             <a 
               href="https://www.dypistonring.com"
@@ -137,4 +136,59 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             >
               <div className="flex items-center justify-center mr-3">
                 <img 
-                  src="
+                  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
+                  alt="DY Logo" 
+                  className="h-12 w-12 object-contain"
+                />
+              </div>
+              <span className={`text-2xl font-bold tracking-tighter oswald ${gradientTextClass}`}>
+                DY PISTON RING
+              </span>
+            </a>
+
+            <div className="hidden md:flex space-x-8 uppercase tracking-widest text-sm font-bold">
+              <button onClick={(e) => handleNav('home', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'home' ? 'border-b border-highlight' : ''}`}>Home</button>
+              <button onClick={(e) => handleNav('piston-ring', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'piston-ring' ? 'border-b border-highlight' : ''}`}>Piston Ring</button>
+              <button onClick={(e) => handleNav('display', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'display' ? 'border-b border-highlight' : ''}`}>Display</button>
+            </div>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-white/10 focus:outline-none"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden bg-navy border-t border-white/10">
+          <div className="px-4 py-4 space-y-4">
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-gray-400" />
+              </span>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-0 focus:text-gray-900 sm:text-sm"
+                placeholder="Search..."
+              />
+            </div>
+            <div className="space-y-1">
+              <button onClick={(e) => handleNav('home', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Home</button>
+              <button onClick={(e) => handleNav('piston-ring', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Piston Ring</button>
+              <button onClick={(e) => handleNav('display', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Display</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
