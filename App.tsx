@@ -48,7 +48,7 @@ const App: React.FC = () => {
     },
     {
       label: "Coating Hardness (HV)",
-      values: ["Above 900", "1200 +/- 300", "1500 ~ 3000", "1200 +/- 300", "1800 ~ 3300"]
+      values: ["Above 900", "1200 ± 300", "1500 ~ 3000", "1200 ± 300", "1800 ~ 3300"]
     },
     {
       label: "Coating Thickness (mm)",
