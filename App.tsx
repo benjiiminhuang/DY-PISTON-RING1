@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// 移除了 .tsx 后缀，确保 Vite 编译更稳定
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TreadmillSection from './components/TreadmillSection';
@@ -45,17 +44,11 @@ const App: React.FC = () => {
   const coatingData = [
     {
       label: "Technological Principle",
-      values: [
-        "Gas nitriding",
-        "Physical vapor deposition",
-        "PVD + Magnetic Filtered Cathodic Vacuum Arc",
-        "Physical vapor deposition",
-        "PVD + Magnetic Filtered Cathodic Vacuum Arc",
-      ]
+      values: ["Gas nitriding", "Physical vapor deposition", "PVD + Magnetic Filtered Cathodic Vacuum Arc", "Physical vapor deposition", "PVD + Magnetic Filtered Cathodic Vacuum Arc"]
     },
     {
       label: "Coating Hardness (HV)",
-      values: ["Above 900", "1200 ± 300", "1500 ~ 3000", "1200 ± 300", "1800 ~ 3300"]
+      values: ["Above 900", "1200 +/- 300", "1500 ~ 3000", "1200 +/- 300", "1800 ~ 3300"]
     },
     {
       label: "Coating Thickness (mm)",
@@ -63,12 +56,12 @@ const App: React.FC = () => {
     },
     {
       label: "Wear Resistance",
-      values: ["★", "★★", "★★★", "★★★★★", "★★★★★★"]
+      values: ["1 Star", "2 Stars", "3 Stars", "5 Stars", "6 Stars"]
     },
     {
       label: "Longevity",
-      values: ["★", "★★", "★★★", "★★★★★", "★★★★★★"]
-    },
+      values: ["1 Star", "2 Stars", "3 Stars", "5 Stars", "6 Stars"]
+    }
   ];
 
   const coatingHeaders = ["Nitriding (N)", "PCr (CrN)", "DTC (ta-C)", "PVD (CrN)", "DLC (ta-C)"];
@@ -76,14 +69,11 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar onNavigate={handleNavigate} currentView={currentView} />
-
       <main className="flex-grow">
         {currentView === 'home' && (
           <div className="animate-fade-in">
             <Hero />
             <IntroCard />
-
-            {/* Product Display Section */}
             <section id="display" className="py-20 bg-gray-50">
               <div className="max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
@@ -106,10 +96,48 @@ const App: React.FC = () => {
                 </div>
               </div>
             </section>
-
-            {/* Coating Technology Comparison Table */}
             <section id="coating-comparison" className="py-20 bg-white">
               <div className="max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">
-                    C
+                  <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">Coating <span className="text-highlight">Technology</span> Comparison</h2>
+                  <div className="h-1 w-12 bg-highlight mx-auto mt-4 mb-2"></div>
+                  <p className="text-gray-500 text-sm mt-3">Performance comparison across all available coating types</p>
+                </div>
+                <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-100">
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr style={{ backgroundColor: '#0a1628' }}>
+                        <th style={{ padding: '16px 20px', textAlign: 'left', color: '#aaa', fontWeight: 600, fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.08em', borderRight: '1px solid #1e2d47', minWidth: '180px' }}>Parameter</th>
+                        {coatingHeaders.map((header, i) => (
+                          <th key={i} style={{ padding: '16px 20px', textAlign: 'center', color: 'white', fontWeight: 700, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', borderRight: i < coatingHeaders.length - 1 ? '1px solid #1e2d47' : 'none', minWidth: '140px' }}>{header}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {coatingData.map((row, rowIndex) => (
+                        <tr key={rowIndex} style={{ backgroundColor: rowIndex % 2 === 0 ? '#ffffff' : '#f7f8fa', borderBottom: '1px solid #e8eaed' }}>
+                          <td style={{ padding: '14px 20px', fontWeight: 700, fontSize: '13px', color: '#1a2a4a', borderRight: '1px solid #e8eaed', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{row.label}</td>
+                          {row.values.map((val, colIndex) => (
+                            <td key={colIndex} style={{ padding: '14px 20px', textAlign: 'center', fontSize: '13px', color: '#444', borderRight: colIndex < row.values.length - 1 ? '1px solid #e8eaed' : 'none' }}>{val}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            <FAQSection />
+            <TreadmillSection />
+          </div>
+        )}
+        {currentView === 'piston-ring' && <PistonRingPage />}
+        {currentView === 'display' && <DisplayPage />}
+      </main>
+      <Footer />
+      <SocialNotifications />
+    </div>
+  );
+};
+
+export default App;
