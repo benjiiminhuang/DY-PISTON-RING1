@@ -13,52 +13,82 @@ import SocialNotifications from './components/SocialNotifications';
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'piston-ring' | 'display'>('home');
 
-  // 处理跳转逻辑并自动回到顶部
   const handleNavigate = (view: 'home' | 'piston-ring' | 'display') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-const displayProducts = [
+
+  const displayProducts = [
     {
       id: 1,
-      // 使用 Raw 链接，确保在 GitHub Pages 环境下稳定加载
-      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DLC-PVD-PVD.jpg.jpg", 
+      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DLC-PVD-PVD.jpg.jpg",
       title: "DLC / PVD / PVD Piston Ring Set",
       highlightTitle: "DLC / PVD / PVD",
       description: "High-end coating configuration for motorcycle engines, ideal for racing and high-performance applications."
     },
     {
       id: 2,
-      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/N-P-PCr.jpg", 
+      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/N-P-PCr.jpg",
       title: "N / P / Pcr Piston Ring Set",
       highlightTitle: "N / P / Pcr",
       description: "The most popular standard solution for motorcycle engines, offering excellent balance and reliable durability."
     },
     {
       id: 3,
-      // 对应你列表里的双后缀文件名
-      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/P%2BCr-P-Cr.jpg.jpg", 
+      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/P%2BCr-P-Cr.jpg.jpg",
       title: "P + Cr / P / Cr Piston Ring Set",
       highlightTitle: "P + Cr / P / Cr",
       description: "Phosphating and hard chrome plated configuration for automotive engines, offering reliable wear resistance."
     }
   ];
+
+  const coatingData = [
+    {
+      label: "Technological Principle",
+      values: [
+        "Gas nitriding",
+        "Physical vapor deposition",
+        "PVD + Magnetic Filtered Cathodic Vacuum Arc",
+        "Physical vapor deposition",
+        "PVD + Magnetic Filtered Cathodic Vacuum Arc",
+      ]
+    },
+    {
+      label: "Coating Hardness (HV)",
+      values: ["Above 900", "1200 ± 300", "1500 ~ 3000", "1200 ± 300", "1800 ~ 3300"]
+    },
+    {
+      label: "Coating Thickness (mm)",
+      values: ["Above 0.03", "Above 0.001", "Above 0.001", "Above 0.01", "Above 0.003"]
+    },
+    {
+      label: "Wear Resistance",
+      values: ["★", "★★", "★★★", "★★★★★", "★★★★★★"]
+    },
+    {
+      label: "Longevity",
+      values: ["★", "★★", "★★★", "★★★★★", "★★★★★★"]
+    },
+  ];
+
+  const coatingHeaders = ["Nitriding (N)", "PCr (CrN)", "DTC (ta-C)", "PVD (CrN)", "DLC (ta-C)"];
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* 导航栏置顶 */}
       <Navbar onNavigate={handleNavigate} currentView={currentView} />
 
-      {/* 主内容区域：增加了 pt-20 确保不被固定导航栏遮挡 */}
-     <main className="flex-grow">
+      <main className="flex-grow">
         {currentView === 'home' && (
           <div className="animate-fade-in">
             <Hero />
             <IntroCard />
+
+            {/* Product Display Section */}
             <section id="display" className="py-20 bg-gray-50">
               <div className="max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
-                   <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">Product <span className="text-highlight">Display</span></h2>
-                   <div className="h-1 w-12 bg-highlight mx-auto mt-4 mb-2"></div>
+                  <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">Product <span className="text-highlight">Display</span></h2>
+                  <div className="h-1 w-12 bg-highlight mx-auto mt-4 mb-2"></div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {displayProducts.map((product) => (
@@ -76,20 +106,10 @@ const displayProducts = [
                 </div>
               </div>
             </section>
-            <FAQSection />
-            <TreadmillSection />
-          </div>
-        )}
 
-        {/* 切换页面逻辑 */}
-        {currentView === 'piston-ring' && <PistonRingPage />}
-        {currentView === 'display' && <DisplayPage />}
-      </main>
-
-      <Footer />
-      <SocialNotifications />
-    </div>
-  );
-};
-
-export default App;
+            {/* Coating Technology Comparison Table */}
+            <section id="coating-comparison" className="py-20 bg-white">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-navy oswald uppercase tracking-tight">
+                    C
