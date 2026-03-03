@@ -48,7 +48,7 @@ const DisplayPage: React.FC = () => {
     {
       id: 8,
       title: "Roll",
-      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/%E7%AE%80%E8%A3%855.jpg",
+      image: "https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/roll01.jpg",
       description: "Roll"
     }
   ];
