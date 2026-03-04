@@ -5,13 +5,13 @@ interface SearchableItem {
   id: string;
   title: string;
   type: 'product' | 'page' | 'faq';
-  view: 'home' | 'piston-ring' | 'display';
+  view: 'home' | 'piston-ring' | 'display' | 'contact';
   anchor?: string;
 }
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'piston-ring' | 'display') => void;
-  currentView: 'home' | 'piston-ring' | 'display';
+  onNavigate: (view: 'home' | 'piston-ring' | 'display' | 'contact') => void;
+  currentView: 'home' | 'piston-ring' | 'display' | 'contact';
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
@@ -33,9 +33,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     { id: '10', title: 'OEM/ODM Solutions', type: 'faq', view: 'home', anchor: 'piston-ring' },
   ];
 
-  const filteredResults = searchTerm.trim() === '' 
-    ? [] 
-    : searchableData.filter(item => 
+  const filteredResults = searchTerm.trim() === ''
+    ? []
+    : searchableData.filter(item =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
@@ -49,13 +49,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleNav = (view: 'home' | 'piston-ring' | 'display', e?: React.MouseEvent, anchor?: string) => {
+  const handleNav = (view: 'home' | 'piston-ring' | 'display' | 'contact', e?: React.MouseEvent, anchor?: string) => {
     if (e) e.preventDefault();
     onNavigate(view);
     setIsMenuOpen(false);
     setShowResults(false);
     setSearchTerm('');
-    
+
     setTimeout(() => {
       if (anchor) {
         const element = document.getElementById(anchor);
@@ -74,19 +74,19 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     <nav className="bg-navy text-white sticky top-0 z-50 shadow-lg border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* 左侧：动漫图标（点击回应用主页） */}
-          <a 
-            href="#" 
+          <a
+            href="#"
             onClick={(e) => handleNav('home', e)}
             className="flex-shrink-0 mr-4 group transition-transform hover:scale-110 active:scale-95 hidden md:block"
             title="Return to Home"
           >
-            <img 
-              src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png" 
-              alt="Home" 
+            <img
+              src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DY%20animation.png"
+              alt="Home"
               className="h-16 w-16 object-contain"
-            />      
+            />
           </a>
 
           {/* 中间：搜索框 */}
@@ -126,18 +126,18 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
             )}
           </div>
 
-          {/* 右侧：Logo + 标题（点击跳转官网）+ 导航按钮 */}
+          {/* 右侧：Logo + 标题 + 导航按钮 */}
           <div className="flex items-center justify-between w-full md:w-auto md:space-x-12">
-            <a 
+            <a
               href="https://www.dypistonring.com"
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 flex items-center group transition-transform hover:scale-[1.02]"
             >
               <div className="flex items-center justify-center mr-3">
-                <img 
-                  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png" 
-                  alt="DY Logo" 
+                <img
+                  src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/DYlogo.png"
+                  alt="DY Logo"
                   className="h-12 w-12 object-contain"
                 />
               </div>
@@ -150,6 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               <button onClick={(e) => handleNav('home', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'home' ? 'border-b border-highlight' : ''}`}>Home</button>
               <button onClick={(e) => handleNav('piston-ring', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'piston-ring' ? 'border-b border-highlight' : ''}`}>Piston Ring</button>
               <button onClick={(e) => handleNav('display', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'display' ? 'border-b border-highlight' : ''}`}>Display</button>
+              <button onClick={(e) => handleNav('contact', e)} className={`${gradientTextClass} hover:opacity-70 transition-opacity ${currentView === 'contact' ? 'border-b border-highlight' : ''}`}>Contact</button>
             </div>
 
             <div className="md:hidden">
@@ -183,6 +184,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
               <button onClick={(e) => handleNav('home', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Home</button>
               <button onClick={(e) => handleNav('piston-ring', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Piston Ring</button>
               <button onClick={(e) => handleNav('display', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Display</button>
+              <button onClick={(e) => handleNav('contact', e)} className={`block w-full text-left px-3 py-3 text-base font-bold ${gradientTextClass}`}>Contact</button>
             </div>
           </div>
         </div>
