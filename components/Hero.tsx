@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
     <div className="relative h-[70vh] w-full overflow-hidden block -mt-[2px] transform">
       {/* 确保图片完全填充容器，并稍微向上偏移以确保对齐 */}
       <img
-        src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/banner.png"
+        src="https://raw.githubusercontent.com/benjiiminhuang/DY-PISTON-RING1/main/banner.jpg"
         alt="DY Piston Ring Engineering"
         className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 block m-0 p-0 border-none"
         style={{ top: '-1px' }} // 极致微调，向上压 1 像素
